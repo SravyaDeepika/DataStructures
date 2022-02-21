@@ -1,0 +1,39 @@
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+        
+def serialize(root, A):
+    #code here
+    stack=[root]
+    while(stack):
+        temp=stack.pop(0)
+        if temp:A.append(temp.data)
+        else:A.append(None)
+        if temp and temp.left:stack.append(temp.left)
+        elif temp:stack.append(None)
+        if temp and temp.right:stack.append(temp.right)
+        elif temp:stack.append(None)
+    return A
+    
+    
+#Function to deserialize a list and construct the tree.   
+def deSerialize(A):
+    #code here
+    root=Node(val=A[0])
+    A.pop(0)
+    stack=[root]
+    while(stack and A):
+        temp=stack.pop(0)
+        t=A.pop(0)
+        if t:
+            temp.left=Node(val=t)
+            stack.append(temp.left)
+        else:temp.left=None
+        t=A.pop(0)
+        if t:
+            temp.right=Node(val=t)
+            stack.append(temp.right)
+        else:temp.right=None
+    return root
