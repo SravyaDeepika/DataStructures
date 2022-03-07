@@ -1,0 +1,18 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        start=0;end=0;n=len(s);c=0;co=0
+        if n==0 or n==1:
+            return n
+        while(end<n):
+            if s[end] not in s[start:end]:
+                end+=1
+                c=c+1
+            else:
+                co=max(c,end-start,co)
+                c=c-s[start:end].index(s[end])
+                start=start+s[start:end].index(s[end])+1
+                end+=1
+        return max(co,c)  
+        
+# time complexity -- O(N)
+# space complexity --O(1)  
