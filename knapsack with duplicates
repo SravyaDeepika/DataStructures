@@ -1,0 +1,19 @@
+Question: 
+Given a set of N items, each with a weight and a value, represented by the array w[] and val[] respectively. Also, a knapsack with weight limit W.
+The task is to fill the knapsack in such a way that we can get the maximum profit. Return the maximum profit. 
+
+def knapSack(self, n, W, val, wt):
+        # code here
+        dp = [0 for i in range(W + 1)]
+        ans = 0
+        for i in range(W + 1):
+            for j in range(n):
+                if (wt[j] <= i):
+                    dp[i] = max(dp[i], dp[i - wt[j]] + val[j])
+                    # picking jth  item -- dp[i - wt[j]] + val[j]
+                    # excluding jth item--dp[i]
+                    # because for a single weight we are traversing through  all items available 
+ 
+        return dp[W]
+ TC: O(N*W)
+ SC: O(W)
