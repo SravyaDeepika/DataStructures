@@ -1,0 +1,20 @@
+Question:
+Generate Parentheses -Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+Solution:
+def generate(n):
+  s=[] # stack to generate each particular elements 
+  res=[] # final res
+  def generate_util(open,closed):
+    if open == closed ==n :
+      res.append("".join(s))
+    if open < n:
+      s.append('(')
+      generate_util(open+1,closed)
+      s.pop()
+    if closed < open:
+      s.append(')')
+      generate_util(open,closed+1)
+      s.pop()
+  generate_util()
+  return res
