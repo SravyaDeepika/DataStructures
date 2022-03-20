@@ -1,0 +1,29 @@
+Question :
+Convert given BT  to BST with out altering the structure of tree.
+'''
+# Tree Node
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+class Solution:
+        def inorder(self,root,res,res_val):
+            if root is None:
+                return
+            self.inorder(root.left,res,res_val)
+            res.append(root)
+            res_val.append(root.data)
+            self.inorder(root.right,res,res_val)
+        def binaryTreeToBST(self, root):
+            res=[]#nodes
+            res_val=[]#node_values
+            self.inorder(root,res,res_val)
+            res_val=sorted(res_val)
+            for i in range(len(res)):
+                res[i].data=res_val[i]
+            return root
+
+TC: O(N)
+SC:O(N)
